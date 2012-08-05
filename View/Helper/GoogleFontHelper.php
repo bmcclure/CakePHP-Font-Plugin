@@ -17,15 +17,13 @@ class GoogleFontHelper extends AppHelper {
 	}
 
 	public function link($family, $params = array()) {
-		if (is_array($family)) {
-			$result = '';
-			foreach ($family as $fam) {
-				$result .= $this->link($fam, $params);
-			}
-			return $result;
-		}
+        $result = '';
 
-		return $this->Html->css($this->url($family, $params), null, array('inline' => true));
+        foreach ((array) $family as $fam) {
+            $result .= $this->Html->css($this->url($fam, $params), null, array('inline' => true));
+        }
+
+		return $result;
 	}
 
 	public function url($family, $params = array(), $mergeDefaults = true) {
